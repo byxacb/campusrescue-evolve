@@ -1,0 +1,44 @@
+{
+  "agent_id": "ta_profile_collector",
+  "display_name": "TAProfileCollectorAgent",
+  "description": "通过对话式交互收集 TA 资料（技能、可用时间、偏好），生成结构化 profile 供 AlphaEvolve 使用",
+  "model": "gemini-3.5-flash",
+  "temperature": 0.1,
+  "max_tokens": 2048,
+  "system_prompt": "你是 TAProfileCollector，收集大学助教资料的智能助理。流程：询问姓名学号 -> 收集技能 -> 询问 max_courses (1-5) -> 收集可用时间 (Mon-09:00 格式, >=3 个) -> 询问偏好 -> 用 JSON 总结。要求: 至少 2 个技能, 至少 3 个时间槽。",
+  "flow_steps": [
+    {"step": 1, "node_id": "start", "type": "start", "label": "开始"},
+    {"step": 2, "node_id": "ask_ta_id", "type": "agent", "label": "询问姓名学号"},
+    {"step": 3, "node_id": "ask_skills", "type": "agent", "label": "收集技能"},
+    {"step": 4, "node_id": "ask_availability", "type": "agent", "label": "收集可用时间"},
+    {"step": 5, "node_id": "ask_preferences", "type": "agent", "label": "询问偏好"},
+    {"step": 6, "node_id": "save_profile", "type": "tool", "tool": "save_ta_profile", "label": "保存 profile", "side_effect": true, "idempotency_key": "${run_id}_save_profile", "max_cost": "5"},
+    {"step": 7, "node_id": "end", "type": "end", "label": "结束"}
+  ],
+  "edges": [
+    {"source": "start", "target": "ask_ta_id"},
+    {"source": "ask_ta_id", "target": "ask_skills"},
+    {"source": "ask_skills", "target": "ask_availability"},
+    {"source": "ask_availability", "target": "ask_preferences"},
+    {"source": "ask_preferences", "target": "save_profile"},
+    {"source": "save_profile", "target": "end", "condition": "human_approval"}
+  ],
+  "tools": [
+    {
+      "name": "save_ta_profile",
+      "description": "将收集到的 TA profile 写入数据存储",
+      "parameters_schema": {
+        "type": "object",
+        "properties": {
+          "ta_id": {"type": "string"},
+          "name": {"type": "string"},
+          "skills": {"type": "array", "items": {"type": "string"}},
+          "max_courses": {"type": "integer", "minimum": 1, "maximum": 5},
+          "available_slots": {"type": "array", "items": {"type": "string"}},
+          "preferences": {"type": "object"}
+        },
+        "required": ["ta_id", "name", "skills", "max_courses", "available_slots"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "agent_id": "assignment_reviewer",
+  "display_name": "AssignmentReviewerAgent",
+  "description": "审查 AlphaEvolve 生成的 TA 分配方案，辅助系主任做审批决策",
+  "model": "gemini-3.5-flash",
+  "temperature": 0.1,
+  "max_tokens": 4096,
+  "system_prompt": "你是 AssignmentReviewer，TA 分配方案审查助理。流程: 读取 evolution_result.json + best_assignments.json -> 展示关键指标 (coverage/hard_constraints/skill_match/improvement_vs_seed) -> 列出担忧 (超负荷 TA、技能不匹配课程) -> 询问系主任审批 -> 返回 JSON 决策。",
+  "flow_steps": [
+    {"step": 1, "node_id": "start", "type": "start", "label": "开始"},
+    {"step": 2, "node_id": "load_evolution_result", "type": "tool", "tool": "load_evolution_result", "label": "加载进化结果"},
+    {"step": 3, "node_id": "compare_with_seed", "type": "tool", "tool": "compare_with_seed", "label": "对比 Seed 基线"},
+    {"step": 4, "node_id": "generate_summary", "type": "agent", "label": "生成摘要"},
+    {"step": 5, "node_id": "human_decision", "type": "human", "label": "系主任审批"},
+    {"step": 6, "node_id": "save_audit", "type": "tool", "tool": "audit.report", "label": "记录审计", "side_effect": true, "idempotency_key": "${run_id}_audit", "max_cost": "5"},
+    {"step": 7, "node_id": "end", "type": "end", "label": "结束"}
+  ],
+  "edges": [
+    {"source": "start", "target": "load_evolution_result"},
+    {"source": "load_evolution_result", "target": "compare_with_seed"},
+    {"source": "compare_with_seed", "target": "generate_summary"},
+    {"source": "generate_summary", "target": "human_decision"},
+    {"source": "human_decision", "target": "save_audit", "condition": "approved"},
+    {"source": "human_decision", "target": "end", "condition": "rejected"},
+    {"source": "save_audit", "target": "end"}
+  ],
+  "tools": [
+    {"name": "load_evolution_result", "description": "读取 AlphaEvolve 进化结果"},
+    {"name": "compare_with_seed", "description": "对比 Seed 与最优方案指标"},
+    {"name": "audit.report", "description": "写入审计日志（调用 BYO-MCP audit.report）"}
+  ]
+}

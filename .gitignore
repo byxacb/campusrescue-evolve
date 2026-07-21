@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+audit_logs/*.jsonl
+run_state/*.json
+results/*.json
+results/*.jsonl
+.playwright-cli/
+*.log

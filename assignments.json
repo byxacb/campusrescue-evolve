@@ -1,0 +1,17 @@
+{
+  "algorithm": "greedy_assign",
+  "assignments": {
+    "CS101": "TA001",
+    "CS201": "TA006",
+    "CS404": "TA004",
+    "CS301": "TA001",
+    "CS507": "TA003",
+    "CS502": "TA008",
+    "CS503": "TA009",
+    "CS506": "TA009",
+    "CS504": "TA008",
+    "CS505": "TA010"
+  },
+  "assigned_count": 10,
+  "unassigned_courses": 10
+}

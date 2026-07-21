@@ -1,0 +1,21 @@
+course_id,title,required_skills,slots,enrollment
+CS101,计算机科学导论,Python;DataAnalysis,Mon-09:00;Mon-10:00,180
+CS102,数据结构与算法,Python;Java,Mon-11:00;Mon-14:00,150
+CS201,数据库系统,SQL;Database,Tue-09:00;Tue-10:00,120
+CS202,操作系统,Python;Java,Tue-11:00;Tue-14:00,100
+CS301,机器学习导论,MachineLearning;Python,Wed-09:00;Wed-10:00,90
+CS302,深度学习,DeepLearning;Python,Wed-11:00;Wed-14:00,80
+CS303,自然语言处理,NLP;DeepLearning,Thu-09:00;Thu-10:00,70
+CS304,计算机视觉,DeepLearning;ComputerVision,Thu-11:00;Thu-14:00,60
+CS401,Web 开发,WebDevelopment;JavaScript,Mon-14:00;Mon-15:00,110
+CS402,前端工程,JavaScript;CSS,Tue-09:00;Tue-10:00,80
+CS403,统计分析,R;Statistics,Wed-14:00;Wed-15:00,70
+CS404,大数据分析,DataAnalysis;Python,Thu-09:00;Thu-10:00,100
+CS501,人工智能伦理,Python;MachineLearning,Fri-09:00;Fri-10:00,40
+CS502,分布式系统,Database;Python,Mon-09:00;Mon-10:00,60
+CS503,编译原理,Java;Python,Tue-09:00;Tue-10:00,50
+CS504,高级数据库,Database;SQL,Wed-09:00;Wed-10:00,40
+CS505,强化学习,MachineLearning;Statistics,Thu-09:00;Thu-10:00,30
+CS506,计算机图形学,Python;JavaScript,Fri-09:00;Fri-10:00,45
+CS507,数据挖掘,DataAnalysis;MachineLearning,Mon-14:00;Mon-15:00,85
+CS508,云计算,Python;Database,Tue-14:00;Tue-15:00,75

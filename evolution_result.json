@@ -1,0 +1,604 @@
+{
+  "seed_composite": 0.6,
+  "best_composite": 0.6624,
+  "improvement": 0.0624,
+  "improvement_pct": 10.4,
+  "generations": 10,
+  "total_candidates": 50,
+  "best_scores": {
+    "hard_satisfaction_ratio": 0.7857,
+    "skill_match_coverage": 0.7273,
+    "workload_balance": 0.218,
+    "coverage": 0.55
+  },
+  "all_candidates": [
+    {
+      "generation": 1,
+      "candidate_id": 2,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 1,
+      "candidate_id": 3,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 1,
+      "candidate_id": 4,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 1,
+      "candidate_id": 5,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 1,
+      "candidate_id": 6,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 2,
+      "candidate_id": 7,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 2,
+      "candidate_id": 8,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 2,
+      "candidate_id": 9,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 2,
+      "candidate_id": 10,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 2,
+      "candidate_id": 11,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 3,
+      "candidate_id": 12,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 3,
+      "candidate_id": 13,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 3,
+      "candidate_id": 14,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 3,
+      "candidate_id": 15,
+      "composite_score": 0.6158,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0.1056,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 3,
+      "candidate_id": 16,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 4,
+      "candidate_id": 17,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 4,
+      "candidate_id": 18,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 4,
+      "candidate_id": 19,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 4,
+      "candidate_id": 20,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 4,
+      "candidate_id": 21,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 5,
+      "candidate_id": 22,
+      "composite_score": 0.6,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 5,
+      "candidate_id": 23,
+      "composite_score": 0.6,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 5,
+      "candidate_id": 24,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 5,
+      "candidate_id": 25,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 5,
+      "candidate_id": 26,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 6,
+      "candidate_id": 27,
+      "composite_score": 0.6,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 6,
+      "candidate_id": 28,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 6,
+      "candidate_id": 29,
+      "composite_score": 0.6,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 6,
+      "candidate_id": 30,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 6,
+      "candidate_id": 31,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 7,
+      "candidate_id": 32,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 7,
+      "candidate_id": 33,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 7,
+      "candidate_id": 34,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 7,
+      "candidate_id": 35,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 7,
+      "candidate_id": 36,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 8,
+      "candidate_id": 37,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 8,
+      "candidate_id": 38,
+      "composite_score": 0.6,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 8,
+      "candidate_id": 39,
+      "composite_score": 0.6,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 8,
+      "candidate_id": 40,
+      "composite_score": 0.6,
+      "scores": {
+        "hard_satisfaction_ratio": 0.75,
+        "skill_match_coverage": 0.7,
+        "workload_balance": 0,
+        "coverage": 0.5
+      },
+      "assigned_count": 10
+    },
+    {
+      "generation": 8,
+      "candidate_id": 41,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 9,
+      "candidate_id": 42,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 9,
+      "candidate_id": 43,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 9,
+      "candidate_id": 44,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 9,
+      "candidate_id": 45,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 9,
+      "candidate_id": 46,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 10,
+      "candidate_id": 47,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 10,
+      "candidate_id": 48,
+      "composite_score": 0.6624,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.218,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 10,
+      "candidate_id": 49,
+      "composite_score": 0.6406,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0.0729,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    },
+    {
+      "generation": 10,
+      "candidate_id": 50,
+      "composite_score": 0.6297,
+      "scores": {
+        "hard_satisfaction_ratio": 0.7857,
+        "skill_match_coverage": 0.7273,
+        "workload_balance": 0,
+        "coverage": 0.55
+      },
+      "assigned_count": 11
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+ta_id,name,skills,max_courses,slots
+TA001,张三,Python;DataAnalysis;MachineLearning,3,Mon-09:00;Mon-10:00;Mon-14:00;Tue-09:00;Tue-10:00;Wed-09:00;Wed-10:00
+TA002,李四,Java;WebDevelopment;Database,3,Mon-09:00;Mon-11:00;Tue-09:00;Tue-11:00;Wed-09:00;Wed-11:00;Thu-09:00
+TA003,王五,Statistics;DataAnalysis;R,2,Mon-14:00;Mon-15:00;Tue-14:00;Wed-09:00;Wed-10:00;Thu-09:00;Fri-09:00
+TA004,赵六,DeepLearning;NLP;Python,2,Tue-09:00;Tue-10:00;Tue-14:00;Wed-09:00;Thu-09:00;Thu-10:00;Fri-09:00
+TA005,陈七,WebDevelopment;JavaScript;CSS,3,Mon-09:00;Mon-10:00;Mon-11:00;Tue-09:00;Wed-09:00;Wed-10:00;Thu-09:00;Fri-09:00
+TA006,孙八,Database;SQL;Python,2,Mon-14:00;Tue-09:00;Tue-10:00;Wed-14:00;Thu-09:00;Thu-10:00;Fri-09:00
+TA007,周九,MachineLearning;DeepLearning;Statistics,2,Tue-09:00;Tue-10:00;Tue-14:00;Wed-09:00;Wed-10:00;Thu-09:00
+TA008,吴十,Python;WebDevelopment;Database,3,Mon-09:00;Mon-10:00;Mon-11:00;Tue-09:00;Wed-09:00;Wed-10:00;Thu-09:00;Thu-10:00
+TA009,郑一,NLP;DeepLearning;Python,2,Tue-09:00;Tue-10:00;Tue-14:00;Wed-09:00;Wed-10:00;Fri-09:00;Fri-10:00
+TA010,冯二,Java;MachineLearning;DataAnalysis,2,Mon-09:00;Mon-10:00;Tue-09:00;Wed-09:00;Wed-10:00;Thu-09:00;Thu-10:00;Fri-09:00
+TA011,楚三,Statistics;R;DataAnalysis,2,Mon-09:00;Mon-14:00;Tue-09:00;Wed-09:00;Thu-09:00;Thu-10:00
+TA012,魏四,JavaScript;CSS;WebDevelopment,3,Mon-10:00;Tue-10:00;Tue-11:00;Wed-10:00;Thu-10:00;Thu-11:00;Fri-09:00
+TA013,韩五,Python;DeepLearning;ComputerVision,2,Tue-09:00;Tue-10:00;Tue-14:00;Wed-09:00;Thu-09:00;Fri-09:00
+TA014,杨六,Database;SQL;Python,2,Mon-09:00;Mon-10:00;Mon-14:00;Tue-09:00;Wed-09:00;Thu-09:00
+TA015,秦七,MachineLearning;Statistics;R,1,Tue-09:00;Tue-10:00;Tue-14:00;Wed-09:00;Fri-09:00
