@@ -231,6 +231,11 @@ Apache 2.0 — 用于 Google Agent Hackathon Firebird Track
 ---
 
 
+### 评委验证文档
+
+- [EVIDENCE.md](EVIDENCE.md) — 11 节一键 self-audit 清单
+- [_DEMO_SCRIPT.md](_DEMO_SCRIPT.md) — 10 分钟演示脚本
+
 ## 🎓 可复用领域技能 (Skills)
 
 命题二要求 "Leverage reusable, domain-specific Skills"。本仓库提供：
