@@ -269,7 +269,7 @@ EOF
 
 | 项 | 值 |
 |---|---|
-| ReasoningEngine ID | `projects/538412438779/locations/us-west1/reasoningEngines/2073459027659980800` |
+| ReasoningEngine ID | `projects/538412438779/locations/us-west1/reasoningEngines/8630700085111422976` |
 | Display Name | CampusRescueOrchestrator |
 | Model | gemini-2.5-pro (root), gemini-2.5-flash (sub-agents) |
 | Smoke test | ✅ stream_query 流回主代理回答 |

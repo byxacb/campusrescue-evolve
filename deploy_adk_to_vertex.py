@@ -14,7 +14,6 @@ from google import genai
 from google.adk.agents import LlmAgent
 from google.adk.models import Gemini
 from google.adk.tools import agent_tool
-import vertexai
 from vertexai import agent_engines
 from vertexai.preview.reasoning_engines import AdkApp
 
@@ -22,11 +21,7 @@ PROJECT = "project-53bf8b85-eb44-4391-a2e"
 LOCATION = "us-west1"
 STAGING_BUCKET = f"gs://{PROJECT}-adk-staging"
 
-vertexai.init(
-    project=PROJECT,
-    location=LOCATION,
-    staging_bucket=STAGING_BUCKET,
-)
+# vertexai.init called inside main() to keep pickle portable
 ta_profile_collector = LlmAgent(
     name="CampusRescueTAProfileCollector",
     model=Gemini(model="gemini-2.5-flash"),
@@ -135,6 +130,12 @@ root_agent = LlmAgent(
 
 
 def main():
+    import vertexai
+    vertexai.init(
+        project=PROJECT,
+        location=LOCATION,
+        staging_bucket=STAGING_BUCKET,
+    )
     # GCP staging bucket (create if missing)
     from google.cloud import storage
     storage_client = storage.Client(project=PROJECT)
@@ -167,6 +168,9 @@ def main():
             "google-genai>=2.12.0",
             "google-api-core>=2.32.0",
             "mcp>=1.0.0",
+            "google-cloud-storage>=3.10.0",
+            "cloudpickle>=3.1.2",
+            "pydantic>=2.13.4",
         ],
         display_name="CampusRescueOrchestrator",
         description="系主任救火队员编排 Agent: AlphaEvolve + 5 MCP + 3 sub-agents",

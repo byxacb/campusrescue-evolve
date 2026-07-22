@@ -28,7 +28,7 @@ gcloud ai reasoning-engines list \
 期望看到 1 条：
 ```
 NAME                                                  DISPLAYNAME
-projects/538412438779/locations/us-west1/reasoningEngines/2073459027659980800  CampusRescueOrchestrator
+projects/538412438779/locations/us-west1/reasoningEngines/8630700085111422976  CampusRescueOrchestrator
 ```
 
 ---
@@ -41,7 +41,7 @@ source .venv/bin/activate
 python3 run_demo.py "请用一句话介绍你自己和5阶段工作流"
 ```
 
-期望：终端打印 `=== Reasoning Engine: 2073459027659980800 ===`，并以 `=== total events: N ===` 结尾。模型回答问题的文本会以 `text=` 形式出现。
+期望：终端打印 `=== Reasoning Engine: 8630700085111422976 ===`，并以 `=== total events: N ===` 结尾。模型回答问题的文本会以 `text=` 形式出现。
 
 ---
 
