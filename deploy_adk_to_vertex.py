@@ -18,10 +18,6 @@ import vertexai
 from vertexai import agent_engines
 from vertexai.preview.reasoning_engines import AdkApp
 
-# ── BYO-MCP toolsets (5 Cloud Run services, us-central1) ────────────
-
-
-
 PROJECT = "project-53bf8b85-eb44-4391-a2e"
 LOCATION = "us-west1"
 STAGING_BUCKET = f"gs://{PROJECT}-adk-staging"
@@ -56,7 +52,6 @@ ta_profile_collector = LlmAgent(
 }
 """,
     output_key="ta_profile",
-    tools=[],
 )
 
 # === 2. EvolutionAgent 子 Agent ===
@@ -82,7 +77,6 @@ evolution_agent = LlmAgent(
 }
 """,
     output_key="evolution_result",
-    tools=[],
 )
 
 # === 3. AssignmentReviewer 子 Agent ===
@@ -111,7 +105,6 @@ assignment_reviewer = LlmAgent(
 }
 """,
     output_key="review_result",
-    tools=[],
 )
 
 # === Root Agent ===
