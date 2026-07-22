@@ -14,9 +14,26 @@ from google import genai
 from google.adk.agents import LlmAgent
 from google.adk.models import Gemini
 from google.adk.tools import agent_tool
+from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPConnectionParams
+from google.adk.tools.mcp_tool import McpToolset
 import vertexai
 from vertexai import agent_engines
 from vertexai.preview.reasoning_engines import AdkApp
+
+# ── BYO-MCP toolsets (5 Cloud Run services, us-central1) ────────────
+# Construct McpToolset objects at agent build time. ADK fetches tools lazily on first call.
+MCP_URLS = {
+    "data_retrieve":      "https://mcp-data-retrieve-5l3z4bmblq-uc.a.run.app/mcp",
+    "evaluator_run":      "https://mcp-evaluator-run-5l3z4bmblq-uc.a.run.app/mcp",
+    "audit_report":       "https://mcp-audit-report-5l3z4bmblq-uc.a.run.app/mcp",
+    "hardagents_compile": "https://mcp-hardagents-compile-5l3z4bmblq-uc.a.run.app/mcp",
+    "campusflow_run":     "https://mcp-campusflow-run-5l3z4bmblq-uc.a.run.app/mcp",
+}
+_MCP_TOOLSETS = {n: McpToolset(connection_params=StreamableHTTPConnectionParams(url=u))
+                 for n, u in MCP_URLS.items()}
+def _tools(*names): return [_MCP_TOOLSETS[n] for n in names]
+print(f"🔗 Constructed {len(_MCP_TOOLSETS)} McpToolset objects (lazy fetch)")
+
 
 PROJECT = "project-53bf8b85-eb44-4391-a2e"
 LOCATION = "us-west1"
@@ -52,6 +69,7 @@ ta_profile_collector = LlmAgent(
 }
 """,
     output_key="ta_profile",
+    tools=_tools("data_retrieve"),
 )
 
 # === 2. EvolutionAgent 子 Agent ===
@@ -77,6 +95,7 @@ evolution_agent = LlmAgent(
 }
 """,
     output_key="evolution_result",
+    tools=_tools("data_retrieve", "evaluator_run"),
 )
 
 # === 3. AssignmentReviewer 子 Agent ===
@@ -105,6 +124,7 @@ assignment_reviewer = LlmAgent(
 }
 """,
     output_key="review_result",
+    tools=_tools("audit_report", "campusflow_run"),
 )
 
 # === Root Agent ===
@@ -130,7 +150,7 @@ root_agent = LlmAgent(
         evolution_agent,
         assignment_reviewer,
     ],
-    tools=[],
+    tools=_tools("data_retrieve", "evaluator_run", "audit_report", "hardagents_compile", "campusflow_run"),
 )
 
 
