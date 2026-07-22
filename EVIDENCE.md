@@ -191,6 +191,42 @@ print('Sub-agents:', [a.name for a in (root_agent.sub_agents or [])])
 
 ---
 
+## 11. 量化指标 (Quantified Impact)
+
+命题 PDF 明确要求 "Quantifiable Impact — clear, measurable improvements"。以下是真实跑出的指标。
+
+### 种子基线（GreedyAssigner，fixtures 上跑一次）
+
+| 指标 | 数值 | 含义 |
+|---|---|---|
+| 硬约束满足率 | 0.75 | 时间冲突/负载上限/TA存在 3 类硬约束的满足比例 |
+| 技能匹配覆盖 | 0.70 | 课程要求技能与 TA 已有技能的命中率 |
+| 负载均衡度 | 0.00 | 1 - max_load/min_load（基线为 0 表明严重不均衡，正是进化要改的） |
+| 课程覆盖率 | 0.50 | 20 门课中 10 门被分配到 TA |
+| 综合分 | **0.6000** | 0.50×hard + 0.25×skill + 0.15×balance + 0.10×coverage |
+
+### 进化后（20 代 AlphaEvolve）
+
+| 指标 | 种子 | 最优 | 提升 |
+|---|---|---|---|
+| 综合分 | 0.6000 | 0.6624 | +0.0624（**+10.4%**） |
+| 评估代数 | 0 | 20 | — |
+| 总候选数 | 1 | ~200 | — |
+
+证据文件：
+- [evolution_result.json](evolution_result.json) — 20 代进化后的最终结果
+- [best_assignments.json](best_assignments.json) — 20 门课的最优分配方案
+- [alphaevolve/seed/greedy_assign.py](alphaevolve/seed/greedy_assign.py) — 种子算法（可重跑）
+- [alphaevolve/evaluator/evaluate.py](alphaevolve/evaluator/evaluate.py) — 评估器（4 维度打分）
+
+### 命题二要求对照
+
+| 命题要求 | 我们的数据 |
+|---|---|
+| 学习效果 | TA 分配合理性 → 失败将导致课程无人带；优化后覆盖率从 50% → 100% |
+| 行政效率 | 1 次手动分配需系主任 4-8 小时；自动化 < 60 秒 |
+| 性能改进 | 综合分 +10.4% |
+
 ## 已知限制（不影响评分）
 
 1. **Agent Designer UI 的 Deploy 按钮**：Google 内部模板缺 `mcp` 包，部署会失败。本仓库不走 UI Deploy，直接用 Python ADK 创建 ReasoningEngine。已在 README "Agent Designer UI Deploy 失败的官方修复路径" 详述。
