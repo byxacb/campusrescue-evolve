@@ -150,11 +150,11 @@ def main():
     app = AdkApp(
         agent=root_agent,
         env_vars={
-            "MCP_DATA_RETRIEVE_URL": "https://mcp-data-retrieve-5l3z4bmblq-uc.a.run.app",
-            "MCP_EVALUATOR_RUN_URL": "https://mcp-evaluator-run-5l3z4bmblq-uc.a.run.app",
-            "MCP_AUDIT_REPORT_URL": "https://mcp-audit-report-5l3z4bmblq-uc.a.run.app",
-            "MCP_HARDAGENTS_COMPILE_URL": "https://mcp-hardagents-compile-5l3z4bmblq-uc.a.run.app",
-            "MCP_CAMPUSFLOW_RUN_URL": "https://mcp-campusflow-run-5l3z4bmblq-uc.a.run.app",
+            "MCP_DATA_RETRIEVE_URL": "https://mcp-data-retrieve-5l3z4bmblq-uc.a.run.app/mcp",
+            "MCP_EVALUATOR_RUN_URL": "https://mcp-evaluator-run-5l3z4bmblq-uc.a.run.app/mcp",
+            "MCP_AUDIT_REPORT_URL": "https://mcp-audit-report-5l3z4bmblq-uc.a.run.app/mcp",
+            "MCP_HARDAGENTS_COMPILE_URL": "https://mcp-hardagents-compile-5l3z4bmblq-uc.a.run.app/mcp",
+            "MCP_CAMPUSFLOW_RUN_URL": "https://mcp-campusflow-run-5l3z4bmblq-uc.a.run.app/mcp",
         },
     )
 
@@ -166,6 +166,7 @@ def main():
             "google-cloud-aiplatform>=1.161.0",
             "google-genai>=2.12.0",
             "google-api-core>=2.32.0",
+            "mcp>=1.0.0",
         ],
         display_name="CampusRescueOrchestrator",
         description="系主任救火队员编排 Agent: AlphaEvolve + 5 MCP + 3 sub-agents",

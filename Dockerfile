@@ -4,11 +4,10 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # 安装依赖
-RUN pip install --no-cache-dir fastmcp==3.4.4 uvicorn==0.51.0 httpx==0.28.1
+RUN pip install --no-cache-dir fastmcp==3.4.4 uvicorn==0.51.0 httpx==0.28.1 google-api-python-client>=2.179.0 google-auth-httplib2>=0.2.0
 
 # 复制 server 代码（构建参数 SERVER_NAME 决定）
-ARG SERVER_NAME
-ENV SERVER_NAME=$SERVER_NAME
+ENV SERVER_NAME=audit_report
 ENV PORT=8080
 ENV PYTHONUNBUFFERED=1
 

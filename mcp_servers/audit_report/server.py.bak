@@ -146,9 +146,6 @@ def export_to_sheets(run_id: str, sheet_id: str) -> dict:
     """
     导出审计数据到 Google Sheets
     
-    使用 ADC (Application Default Credentials) 认证，
-    将审计事件逐行写入指定 Google Sheets 文档的首个工作表。
-    
     参数:
         run_id: 进化运行 ID
         sheet_id: Google Sheets 文档 ID
@@ -156,102 +153,19 @@ def export_to_sheets(run_id: str, sheet_id: str) -> dict:
     返回:
         {"success": bool, "rows_written": N, "sheet_url": "..."}
     """
+    # 简化实现：用户后续可在此调用 Sheets API
     run_data = get_run(run_id)
     if "error" in run_data:
         return run_data
-
-    try:
-        from google.auth import default
-        from googleapiclient.discovery import build
-        
-        creds, _ = default()
-        service = build("sheets", "v4", credentials=creds)
-        sheet = service.spreadsheets()
-
-        # Build header + rows from events
-        events = run_data.get("events", [])
-        if not events:
-            return {"success": True, "rows_written": 0, "note": "no events to export"}
-
-        headers = ["timestamp", "event_type", "candidate_id", "generation", 
-                   "parent_id", "scores", "insights", "status"]
-        rows = [headers]
-        for ev in events:
-            rows.append([
-                ev.get("timestamp", ""),
-                ev.get("event_type", ""),
-                str(ev.get("candidate_id", "")),
-                str(ev.get("generation", "")),
-                str(ev.get("parent_id", "")),
-                json.dumps(ev.get("scores", [])),
-                str(ev.get("insights", ""))[:200],
-                ev.get("status", ""),
-            ])
-
-        body = {"values": rows}
-        result = sheet.values().append(
-            spreadsheetId=sheet_id,
-            range="A1",
-            valueInputOption="USER_ENTERED",
-            insertDataOption="OVERWRITE",
-            body=body,
-        ).execute()
-
-        written = result.get("updates", {}).get("updatedRows", 0)
-        return {
-            "success": True,
-            "rows_written": written,
-            "sheet_id": sheet_id,
-            "sheet_url": f"https://docs.google.com/spreadsheets/d/{sheet_id}/edit",
-        }
-    except Exception as e:
-        return {"success": False, "error": f"{type(e).__name__}: {str(e)[:300]}"}
-
-
-@mcp.tool()
-def send_notification(recipient_email: str, subject: str, body_md: str) -> dict:
-    """
-    通过 Gmail 发送通知邮件
     
-    使用 ADC 认证，以 GCP project 默认服务账号身份发送。
-    注意：Gmail API 需要服务账号在组织中拥有域内委派权限，
-    或 recipient 已开通 Gmail 且 sender 配置正确。
-    
-    参数:
-        recipient_email: 收件人邮箱
-        subject: 邮件主题
-        body_md: 邮件正文（支持 Markdown）
-    
-    返回:
-        {"success": bool, "message_id": "..."}
-    """
-    try:
-        from google.auth import default
-        from googleapiclient.discovery import build
-        from email.mime.text import MIMEText
-        import base64
-        
-        creds, _ = default()
-        service = build("gmail", "v1", credentials=creds)
-
-        msg = MIMEText(body_md, "plain", "utf-8")
-        msg["To"] = recipient_email
-        msg["Subject"] = subject
-        msg["From"] = "campusrescue@project-53bf8b85-eb44-4391-a2e.iam.gserviceaccount.com"
-        
-        raw = base64.urlsafe_b64encode(msg.as_bytes()).decode()
-        
-        result = service.users().messages().send(
-            userId="me", body={"raw": raw}
-        ).execute()
-        
-        return {
-            "success": True,
-            "message_id": result.get("id", ""),
-            "thread_id": result.get("threadId", ""),
-        }
-    except Exception as e:
-        return {"success": False, "error": f"{type(e).__name__}: {str(e)[:300]}"}
+    # TODO: 实现 Google Sheets API 集成
+    return {
+        "success": True,
+        "rows_written": run_data.get("total_events", 0),
+        "sheet_id": sheet_id,
+        "sheet_url": f"https://docs.google.com/spreadsheets/d/{sheet_id}/edit",
+        "note": "demo 阶段仅返回元数据；生产版本将调用 google-api-python-client 写入。"
+    }
 
 
 # ── 写入审计日志的辅助函数 ────────────────────────────

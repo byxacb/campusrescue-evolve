@@ -210,3 +210,48 @@ AlphaEvolve 通过 LLM 生成 mutation，仅替换 EVOLVE-BLOCK 内的代码，
 ## 📜 License
 
 Apache 2.0 — 用于 Google Agent Hackathon Firebird Track
+
+---
+
+## 🎉 Live Status (2026-07-23)
+
+### Reasoning Engine 公网可调用
+
+| 项 | 值 |
+|---|---|
+| ReasoningEngine ID | `projects/538412438779/locations/us-west1/reasoningEngines/2073459027659980800` |
+| Display Name | CampusRescueOrchestrator |
+| Model | gemini-2.5-pro (root), gemini-2.5-flash (sub-agents) |
+| Smoke test | ✅ stream_query 流回主代理回答 |
+| Sub-agents | TAProfileCollector / EvolutionAgent / AssignmentReviewer |
+| MCP servers | 5 个 (data.retrieve / evaluator.run / audit.report / hardagents.compile / campusflow.run) 全 HTTP 200 |
+
+### 一键评委 demo
+
+```bash
+cd firebird-entry
+source .venv/bin/activate
+python3 run_demo.py "请用一句话介绍你自己和5阶段工作流"
+```
+
+### 已注册到 Agent Registry
+
+- `CampusRescueOrchestrator` (root)
+- `CampusRescueTAProfileCollector`
+- `CampusRescueEvolutionAgent`
+- `CampusRescueAssignmentReviewer`
+
+### Google Workspace 集成（已启用）
+
+- Sheets API + Gmail API 已在 project  启用
+- `audit_report` MCP server 已扩展两个新工具：
+  - `export_to_sheets(run_id, sheet_id)` — 把审计事件写入 Google Sheets
+  - `send_notification(recipient_email, subject, body_md)` — Gmail 发通知
+- Cloud Run 服务已重新部署，tools/list 已确认返回 6 个工具
+
+### Agent Designer UI Deploy 失败的 official 修复路径
+
+UI Deploy 按钮走 Google 内部 `/code/app/api/app.py:60` 模板，与 ADK 实际打包结构不匹配，
+导致 container 启动失败、占位 RE 被回收。本仓库的解决方法：**不依赖 UI Deploy**，
+直接用 `deploy_adk_to_vertex.py` 调 `agent_engines.create()` 创建真正能 serve 的 ReasoningEngine，
+UI 画布保留作可视化展示。
