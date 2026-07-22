@@ -1,0 +1,103 @@
+{
+  "skill_id": "curriculum_alignment",
+  "display_name": "Curriculum Alignment Skill",
+  "description": "可复用领域技能：课程对齐检查。输入课程大纲与 TA 技能清单，输出技能匹配率矩阵，标识覆盖缺口与冗余。可被 Agent Designer 工作流中的任何代理调用。",
+  "version": "1.0.0",
+  "author": "CampusRescue Team",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "course_syllabi": {
+        "type": "array",
+        "description": "课程大纲列表",
+        "items": {
+          "type": "object",
+          "properties": {
+            "course_id": {"type": "string"},
+            "required_skills": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "该课程要求的技能（如 Python, Statistics, ML）"
+            },
+            "course_level": {
+              "type": "string",
+              "enum": ["undergraduate", "graduate", "phd"],
+              "description": "课程级别"
+            }
+          },
+          "required": ["course_id", "required_skills"]
+        }
+      },
+      "ta_profiles": {
+        "type": "array",
+        "description": "TA 技能概况列表",
+        "items": {
+          "type": "object",
+          "properties": {
+            "ta_id": {"type": "string"},
+            "skills": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          },
+          "required": ["ta_id", "skills"]
+        }
+      },
+      "options": {
+        "type": "object",
+        "properties": {
+          "min_match_score": {
+            "type": "number",
+            "default": 0.3,
+            "description": "技能匹配最低阈值"
+          },
+          "weight_core_skills": {
+            "type": "number",
+            "default": 2.0,
+            "description": "核心技能权重倍率"
+          }
+        }
+      }
+    },
+    "required": ["course_syllabi", "ta_profiles"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "match_matrix": {
+        "type": "array",
+        "description": "课程×TA 技能匹配矩阵",
+        "items": {
+          "type": "object",
+          "properties": {
+            "course_id": {"type": "string"},
+            "ta_id": {"type": "string"},
+            "match_score": {"type": "number", "minimum": 0, "maximum": 1},
+            "matched_skills": {"type": "array", "items": {"type": "string"}},
+            "missing_skills": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      },
+      "coverage_gaps": {
+        "type": "array",
+        "description": "覆盖率缺口（没有 TA 匹配的课程）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "course_id": {"type": "string"},
+            "gap_severity": {"type": "string", "enum": ["critical", "moderate", "low"]},
+            "unmatched_skills": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "description": "行动建议",
+        "items": {"type": "string"}
+      }
+    }
+  },
+  "invocable_by": ["CampusRescueOrchestrator", "CampusRescueEvolutionAgent", "CampusRescueAssignmentReviewer"],
+  "execution_mode": "deterministic",
+  "tags": ["curriculum", "alignment", "skill_match", "gap_analysis", "education"]
+}

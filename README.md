@@ -15,31 +15,48 @@
 
 ## 🏗️ 系统架构
 
+```mermaid
+graph TB
+  subgraph User[用户层]
+    A1[系主任 / 评委] --> |Agent Designer UI / run_demo.py| AG[ADK Python Agent]
+  end
+
+  subgraph ADK[编排层 · 部署在 Vertex AI Reasoning Engine]
+    AG[agent_engines.create] --> RO[CampusRescueOrchestrator<br/>gemini-2.5-pro]
+    RO --> SA1[TAProfileCollector<br/>gemini-2.5-flash]
+    RO --> SA2[EvolutionAgent<br/>gemini-2.5-pro]
+    RO --> SA3[AssignmentReviewer<br/>gemini-2.5-flash]
+  end
+
+  subgraph MCP[BYO-MCP · 5 Cloud Run · us-central1]
+    M1[mcp-data-retrieve]
+    M2[mcp-evaluator-run]
+    M3[mcp-audit-report<br/>+ export_to_sheets + send_notification]
+    M4[mcp-hardagents-compile]
+    M5[mcp-campusflow-run]
+  end
+
+  subgraph GOOGLE[Google Cloud 服务]
+    G1[Agent Registry · 4 agents]
+    G2[Cloud Scheduler<br/>hourly cron job]
+    G3[Sheets API + Gmail API]
+    G4[Agent Designer UI · 画布展示]
+  end
+
+  SA1 --> M1
+  SA2 --> M1 & M2 & M4
+  SA3 --> M3 & M5
+  RO --> G1
+  G2 --> AG
+
+  classDef adk fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+  classDef mcp fill:#fff3e0,stroke:#e65100,stroke-width:2px
+  classDef gcp fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+  class AG,RO,SA1,SA2,SA3 adk
+  class M1,M2,M3,M4,M5 mcp
+  class G1,G2,G3,G4 gcp
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                  Agent Designer Flow                        │
-│   TA 收集 → AlphaEvolve 进化 → AssignmentReviewer → 审批    │
-└──────────┬──────────────────────────────────────────────────┘
-           │ 调用
-           ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  ADK Agents (3 个)                          │
-│   TAProfileCollector / AssignmentReviewer / CurriculumAlign │
-└──────────┬──────────────────────────────────────────────────┘
-           │ 经由 Agent Gateway 调用
-           ▼
-┌─────────────────────────────────────────────────────────────┐
-│         BYO-MCP (5 个, 部署在 Cloud Run)                   │
-│  data.retrieve | evaluator.run | audit.report               │
-│  hardagents.compile | campusflow.run                       │
-└──────────┬──────────────────────────────────────────────────┘
-           │ 调用
-           ▼
-┌─────────────────────────────────────────────────────────────┐
-│         AlphaEvolve Engine (Discovery Engine)               │
-│  seed → mutation → evaluation → insight → next generation   │
-└─────────────────────────────────────────────────────────────┘
-```
+
 
 ## 📦 目录结构
 
@@ -212,6 +229,34 @@ AlphaEvolve 通过 LLM 生成 mutation，仅替换 EVOLVE-BLOCK 内的代码，
 Apache 2.0 — 用于 Google Agent Hackathon Firebird Track
 
 ---
+
+
+## 🎓 可复用领域技能 (Skills)
+
+命题二要求 "Leverage reusable, domain-specific Skills"。本仓库提供：
+
+- [agent_platform/skills/curriculum_alignment_skill.json](agent_platform/skills/curriculum_alignment_skill.json) — JSON Schema 定义
+- [agent_platform/skills/curriculum_alignment.py](agent_platform/skills/curriculum_alignment.py) — Python 实现
+- 调用者：CampusRescueEvolutionAgent (每代评估) → AssignmentReviewer (审批复核)
+
+### 验证
+
+```bash
+cd firebird-entry
+source .venv/bin/activate
+python3 - <<'EOF'
+import sys, csv
+sys.path.insert(0, 'agent_platform/skills')
+from curriculum_alignment import align_curriculum
+courses = [{'course_id': r['course_id'], 'required_skills': r['required_skills'].split(';')} for r in csv.DictReader(open('fixtures/courses.csv'))]
+tas = [{'ta_id': r['ta_id'], 'skills': r['skills'].split(';')} for r in csv.DictReader(open('fixtures/tas.csv'))]
+result = align_curriculum(courses, tas)
+print('compatible_pairs:', result['stats']['compatible_pairs'])
+print('avg_match_score:', round(result['stats']['avg_match_score'], 3))
+EOF
+```
+
+输出：`compatible_pairs: 141` / `avg_match_score: 0.707` / 课例如 CS101×TA001 = 1.0。
 
 ## 🎉 Live Status (2026-07-23)
 
